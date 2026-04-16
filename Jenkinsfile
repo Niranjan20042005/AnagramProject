@@ -9,25 +9,20 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                url: https://github.com/Niranjan20042005/AnagramProject.git
+                git url: 'https://github.com/Niranjan20042005/AnagramProject.git', branch: 'main'
             }
         }
 
         stage('Build & Test') {
             steps {
-                sh 'mvn clean test'
+                bat 'mvn clean test'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('MySonar') {
-                    sh '''
-                    mvn sonar:sonar \
-                    -Dsonar.projectKey=AnagramProject \
-                    -Dsonar.projectName=AnagramProject
-                    '''
+                    bat 'mvn sonar:sonar -Dsonar.projectKey=AnagramProject -Dsonar.projectName=AnagramProject'
                 }
             }
         }
