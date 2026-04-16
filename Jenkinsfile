@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/yourrepo/AnagramProject.git'
+                url: https://github.com/Niranjan20042005/AnagramProject.git
             }
         }
 
